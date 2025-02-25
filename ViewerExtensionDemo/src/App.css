@@ -1,0 +1,100 @@
+/* Importing Bootswatch Lux theme */
+@import url('https://cdn.jsdelivr.net/npm/bootswatch@5.3.1/dist/lux/bootstrap.min.css');
+
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Viewer Container */
+.app > div:first-child {
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: white;
+}
+
+/* Camera Info */
+.app > div:nth-child(2) {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #495057;
+}
+
+/* Selected IDs Input */
+.app > div:nth-child(3) {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.app input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.075);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.app input[type="text"]:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Reset View Button */
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #000000;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #808080;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .app > div:first-child {
+        width: 100%;
+        height: 400px;
+    }
+
+    .app > div:nth-child(3) {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .app input[type="text"] {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+}
