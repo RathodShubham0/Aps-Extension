@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { fetchToken } from './services/AuthToken'; // Import the service function
 
-const modelUrn = process.env.REACT_APP_APS_MODEL_URN
+const modelUrn =  'dXJuOmFkc2sud2lwcHJvZDpmcy5maWxlOnZmLk5mdVFhX296UVplMzFwd3lKSGZzaEE_dmVyc2lvbj0x'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 function RootComponent() {
