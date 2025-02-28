@@ -1,4 +1,3 @@
- 
 class Edit2dExtension extends Autodesk.Viewing.Extension {
   constructor(viewer, options) {
     super(viewer, options);
@@ -7,6 +6,8 @@ class Edit2dExtension extends Autodesk.Viewing.Extension {
   async load() {
     this._edit2D = await this.viewer.loadExtension('Autodesk.Edit2D');  
     this._edit2D.registerDefaultTools();
+
+   
 
     return true;
   }
@@ -60,6 +61,17 @@ class Edit2dExtension extends Autodesk.Viewing.Extension {
     // Move Button
     let moveButton = new Autodesk.Viewing.UI.Button('MoveButton');
     moveButton.onClick = (ev) => {
+   
+
+      const ctx = this._edit2D.defaultContext;
+       // Add the SELECTION_ADDED event listener
+       ctx.selection.addEventListener(
+      Autodesk.Edit2D.Selection.Events.SELECTION_CHANGED,
+      (event) => {
+        console.log("Selection added:", event);
+        // Your custom logic here
+      }
+    );
       if (moveButton.getState() === Autodesk.Viewing.UI.Button.State.ACTIVE) {
         this.stopTool();
       } else {
@@ -90,6 +102,28 @@ class Edit2dExtension extends Autodesk.Viewing.Extension {
       activeTool.selection?.clear();
       this.viewer.toolController.deactivateTool(activeTool.getName());
     }
+  }
+
+  getPolygonVertices() {
+    const selSet = this.viewer.getSelection();
+    const targetElem = selSet[0];
+
+    const model = this.viewer.model;
+    const instanceTree = model.getData().instanceTree;
+    const fragList = model.getFragmentList();
+
+    let bounds = new THREE.Box3();
+
+    instanceTree.enumNodeFragments(targetElem, (fragId) => {
+      let box = new THREE.Box3();
+      fragList.getWorldBounds(fragId, box);
+      bounds.union(box);
+    }, true);
+
+    const position = bounds.center();
+    console.log('Polygon center position:', position);
+
+    // Additional logic to get vertices can be added here
   }
 }
 
